@@ -27,6 +27,8 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup OpenTofu - ${{ matrix['tofu-versions'] }}
+      env: 
+        ACTIONS_STEP_DEBUG: $ACTIONS_STEP_DEBUG
       uses: ./
       with:
         tofu_version: ${{ matrix['tofu-versions'] }}
@@ -50,6 +52,8 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup OpenTofu
+      env: 
+        ACTIONS_STEP_DEBUG: $ACTIONS_STEP_DEBUG
       uses: ./
       with:
         tofu_wrapper: ${{ matrix['tofu-wrapper'] }}
@@ -73,6 +77,8 @@ jobs:
       run: tofu fmt -check -list=true -no-color
   tofu-run-local:
     name: 'OpenTofu Run Local'
+    env: 
+      ACTIONS_STEP_DEBUG: $ACTIONS_STEP_DEBUG
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -112,6 +118,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     env:
       TF_CLOUD_API_TOKEN: 'XXXXXXXXXXXXXX.atlasv1.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+      ACTIONS_STEP_DEBUG: $ACTIONS_STEP_DEBUG
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -141,6 +148,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     env:
       TF_CLOUD_API_TOKEN: 'XXXXXXXXXXXXXX.atlasv1.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+      ACTIONS_STEP_DEBUG: $ACTIONS_STEP_DEBUG
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -165,6 +173,8 @@ jobs:
 
   tofu-credentials-none:
     name: 'OpenTofu No Credentials'
+    env: 
+      ACTIONS_STEP_DEBUG: $ACTIONS_STEP_DEBUG
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

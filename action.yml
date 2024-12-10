@@ -21,6 +21,10 @@ inputs:
     description: 'API token for GitHub to increase the rate limit. Defaults to the GITHUB_TOKEN environment variable unless running on Forgejo/Gitea.'
     default: ''
     required: false
+  step_debug_logging:
+    description: 'This increases job log verbosity during and after execution when set to `true`. Defaults to `false`'
+    default: 'false'
+    required: false
 outputs:
   stdout:
     description: 'The STDOUT stream of the call to the `tofu` binary.'
